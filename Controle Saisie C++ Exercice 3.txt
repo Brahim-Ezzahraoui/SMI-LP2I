@@ -1,0 +1,61 @@
+#include <iostream>
+#include <cmath>
+#include <limits>
+using namespace std;
+bool controleSaisaieEXer3(float & n,float & m){
+	cout <<"Enter le 1er  rayon : \n";
+	while (!(cin>>n)){
+		if(cin.eof()){
+		/*eof is a member function of the C++ I/O streams, including objects of type std::istream,
+		 such as std::cin, and the derived types such as std::istringstream, std::ifstream, etc. */
+			return false;
+		}else if (cin.fail()){
+			/*fail : Returns true if either (or both) the failbit or the badbit error state flags is set for the stream.
+			At least one of these flags is set when an error occurs during an input operation.
+			failbit is generally set by an operation when the error is related to the internal logic of the operation itself; 
+			further operations on the stream may be possible. While badbit is generally set when the error involves the loss of integrity of the stream,
+ 			which is likely to persist even if a different operation is attempted on the stream */
+			cout<<"S'il vous plait enter seulement des nombres "<<endl;
+			cin.clear();
+			// clear : Removes all elements from the vector (which are destroyed), leaving the container with a size of 0.
+			cin.ignore(numeric_limits<streamsize>::max(),'\n');
+			/*numeric_limits<streamsize>::max() sets the maximum number of characters to ignore. Since this is the upper limit on the size of a stream,
+			 you are effectively telling cin that there is no limit to the number of characters to ignore.*/
+			return 0;
+		}
+	}
+		cout <<"Enter le 2er  rayon : \n";
+			while (!(cin>>m)){
+		if(cin.eof()){
+			return false;
+		}else if (cin.fail()){
+			cout<<"S'il vous plait enter seulement des nombres"<<endl;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(),'\n');
+			return 0;
+		}
+	}
+	return true;
+}
+int main() {
+	float r1,r2;
+	if(controleSaisaieEXer3(r1,r2)){
+	double p1,s1,p2,s2;
+	if(r1>=0 && r2>=0){
+		p1=2*(M_PI)*r1;
+		p2=2*(M_PI)*r2;
+		s1=2*r1*r1;
+		s2=2*r2*r2;
+		cout<<"La 1 �re p�rim�tre est : "<<p1<<"\n";
+		cout<<"La 2 �me p�rim�tre est : "<<p2<<"\n";
+		cout<<"La 1 �re surface est : "<<s1<<"\n";
+		cout<<"La 2 �re surface est : "<<s2<<"\n";
+	}
+	else{
+		cout<<"S'il vous plait enter seulement des nombres positifs"<<endl;
+			return 0;
+	}
+	return 0;
+	}
+}
+//*********************************************************Programme is over ***********************************************************************************
